@@ -1,0 +1,28 @@
+{
+  "name": "senpai-noticias-api",
+  "version": "1.0.0",
+  "description": "Mi api para la ui de noticias",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gustavguez/senpai-noticias-api.git"
+  },
+  "keywords": [
+    "noticias",
+    "senpai",
+    "academy"
+  ],
+  "author": "Senpai Academy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gustavguez/senpai-noticias-api/issues"
+  },
+  "homepage": "https://github.com/gustavguez/senpai-noticias-api#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.3"
+  }
+}
