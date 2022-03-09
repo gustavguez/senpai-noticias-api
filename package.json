@@ -4,7 +4,7 @@
   "description": "Mi api para la ui de noticias",
   "main": "src/index.js",
   "scripts": {
-    "start": "node src/index.js"
+    "start": "nodemon src/index.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,7 @@
   "homepage": "https://github.com/gustavguez/senpai-noticias-api#readme",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.17.3"
+    "express": "^4.17.3",
+    "react-router-dom": "^6.2.2"
   }
 }
