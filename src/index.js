@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const fs = require("fs");
 
 //Info Fake
 const noticias = [
@@ -15,15 +16,36 @@ const api = express();
 //Habilitamos CORS
 api.use(cors());
 
-// api.use("/*", (request, response, next) => {
-//   console.log("ENTRO EN EL MIDDLEWARE");
-//   response.send({ error: "No esta logged!" });
-//   // next();
-// });
+//Middleware
+api.use((request, response, next) => {
+  //CODE - LOGGER: para guardar la url y la fecha
+  const content = `Se entro a la ruta ${request.path} a las ${new Date()}\n`;
+  fs.writeFile("log.txt", content, { flag: "a+" }, () => {
+    //Do nothing!
+  });
+  next();
+});
 
 //Configurar mi primer endpoint
 api.get("/noticias-principales", (request, response) => {
-  response.send(noticias);
+  let size = request.query.size;
+
+  if (size == undefined) {
+    size = 3;
+  }
+  response.send(noticias.slice(0, size));
+});
+
+api.get("/mi-error", (request, response) => {
+  // try {
+  let miObjeto; //BD / FILE / SOURCE
+
+  console.log(miObjeto.name);
+  response.send("OK");
+  // } catch (error) {
+  //   response.statusCode = 400;
+  //   response.send("Ocurrió un error!");
+  // }
 });
 
 api.get("/noticias-principales/:noticiaId", (request, response) => {
@@ -57,6 +79,11 @@ api.get("/*", (request, response) => {
   response.send({
     mensaje: "¡La ruta no existe!",
   });
+});
+
+api.use((error, request, response, next) => {
+  response.statusCode = 400;
+  response.send("ERROR");
 });
 
 //Levantamos nuestra api y escuchamos el puerto que le digamos
