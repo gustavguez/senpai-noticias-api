@@ -8,6 +8,10 @@ const noticias = [
   { id: 2, titulo: "La 2era guerra nueclear" },
   { id: 3, titulo: "La 3era guerra nueclear" },
   { id: 4, titulo: "La 4era guerra nueclear" },
+  { id: 5, titulo: "La 5ta guerra nueclear" },
+  { id: 6, titulo: "La 6ta guerra nueclear" },
+  { id: 7, titulo: "La 7ma guerra nueclear" },
+  { id: 8, titulo: "La 8va guerra nueclear" },
 ];
 
 //Creamos nuestra API
@@ -20,7 +24,7 @@ api.use(cors());
 api.use((request, response, next) => {
   //CODE - LOGGER: para guardar la url y la fecha
   const content = `Se entro a la ruta ${request.path} a las ${new Date()}\n`;
-  fs.writeFile("log.txt", content, { flag: "a+" }, () => {
+  fs.writeFile("./data/log.txt", content, { flag: "a+" }, () => {
     //Do nothing!
   });
   next();
@@ -31,7 +35,7 @@ api.get("/noticias-principales", (request, response) => {
   let size = request.query.size;
 
   if (size == undefined) {
-    size = 3;
+    size = 8;
   }
   response.send(noticias.slice(0, size));
 });
