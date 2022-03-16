@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const bodyParser = require("body-parser");
 const fs = require("fs");
 
 //Info Fake
@@ -17,8 +18,10 @@ const noticias = [
 //Creamos nuestra API
 const api = express();
 
-//Habilitamos CORS
+//Habilitamos CORS y Middlewares externos
 api.use(cors());
+api.use(bodyParser.urlencoded({ extended: false }));
+api.use(bodyParser.json());
 
 //Middleware
 api.use((request, response, next) => {
@@ -75,6 +78,12 @@ api.get("/noticias-principales/:noticiaId", (request, response) => {
   }
   //Responder con la noticia encontrada
   response.send(resultado);
+});
+
+api.post("/contact", function (request, response) {
+  const datos = request.body;
+  console.log(datos);
+  response.send({ message: "OK!" });
 });
 
 api.get("/*", (request, response) => {
