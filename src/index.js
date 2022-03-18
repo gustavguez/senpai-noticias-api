@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
+const multer = require("multer");
 const fs = require("fs");
 
 //Info Fake
@@ -17,6 +18,9 @@ const noticias = [
 
 //Creamos nuestra API
 const api = express();
+
+//Configuramos multer
+const uploadMiddleware = multer({ dest: "public/uploads" });
 
 //Habilitamos CORS y Middlewares externos
 api.use(cors());
@@ -80,9 +84,10 @@ api.get("/noticias-principales/:noticiaId", (request, response) => {
   response.send(resultado);
 });
 
-api.post("/contact", function (request, response) {
+api.post("/contact", uploadMiddleware.single("foto"), function (request, response) {
   const datos = request.body;
-  console.log(datos);
+  const foto = request.file;
+  console.log(datos, foto);
   response.send({ message: "OK!" });
 });
 
