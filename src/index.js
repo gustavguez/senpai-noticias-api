@@ -3,24 +3,32 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const multer = require("multer");
 const fs = require("fs");
+const path = require("path");
+
+const log = require("./utils");
+
+log();
 
 //Info Fake
 const noticias = [
-  { id: 1, titulo: "La 1era guerra nueclear" },
-  { id: 2, titulo: "La 2era guerra nueclear" },
-  { id: 3, titulo: "La 3era guerra nueclear" },
-  { id: 4, titulo: "La 4era guerra nueclear" },
-  { id: 5, titulo: "La 5ta guerra nueclear" },
-  { id: 6, titulo: "La 6ta guerra nueclear" },
-  { id: 7, titulo: "La 7ma guerra nueclear" },
-  { id: 8, titulo: "La 8va guerra nueclear" },
+  { id: 1, titulo: "La 1era guerra nueclear", image: "angular.png" },
+  { id: 2, titulo: "La 2era guerra nueclear", image: "4f0cf8c323ee04886501f83aa4e98aad" },
+  { id: 3, titulo: "La 3era guerra nueclear", image: "4f0cf8c323ee04886501f83aa4e98aad" },
+  { id: 4, titulo: "La 4era guerra nueclear", image: "4f0cf8c323ee04886501f83aa4e98aad" },
+  { id: 5, titulo: "La 5ta guerra nueclear", image: "4f0cf8c323ee04886501f83aa4e98aad" },
+  { id: 6, titulo: "La 6ta guerra nueclear", image: "4f0cf8c323ee04886501f83aa4e98aad" },
+  { id: 7, titulo: "La 7ma guerra nueclear", image: "4f0cf8c323ee04886501f83aa4e98aad" },
+  { id: 8, titulo: "La 8va guerra nueclear", image: "4f0cf8c323ee04886501f83aa4e98aad" },
 ];
 
 //Creamos nuestra API
 const api = express();
 
 //Configuramos multer
-const uploadMiddleware = multer({ dest: "public/uploads" });
+const uploadMiddleware = multer({ dest: path.join("public", "uploads") });
+
+//Habilitamos acceso a las imagenes en public/uploads
+api.use(express.static(path.join(__dirname, "..", "public")));
 
 //Habilitamos CORS y Middlewares externos
 api.use(cors());
@@ -36,6 +44,18 @@ api.use((request, response, next) => {
   });
   next();
 });
+
+//Un enpoint para acceder a las imagenes de mi api
+// api.get("/uploads/:filename", (request, response) => {
+//   const filename = request.params.filename;
+//   const rutaImagen = path.join(__dirname, "..", "public", "uploads", filename);
+//   //Controlar el acceso a la imagen
+//   if (filename === "angular.png") {
+//     response.statusCode = 400;
+//     response.send("No tienes acceso a esta imagen");
+//   }
+//   response.sendFile(rutaImagen);
+// });
 
 //Configurar mi primer endpoint
 api.get("/noticias-principales", (request, response) => {
