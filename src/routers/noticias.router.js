@@ -1,6 +1,9 @@
 const express = require("express");
 const noticiasRouter = express.Router();
 
+//Requerir el middlware de auth
+const { authMiddleware } = require("./../middlewares/auth.middleware");
+
 //Info Fake
 const noticias = [
   { id: 1, titulo: "La 1era guerra nueclear", image: "angular.png" },
@@ -24,7 +27,7 @@ noticiasRouter.get("/", (request, response) => {
 });
 
 //Configuro el get de una
-noticiasRouter.get("/:noticiaId", (request, response) => {
+noticiasRouter.get("/:noticiaId", authMiddleware, (request, response) => {
   let resultado = null;
 
   //Obtener el noticiaId de la ruta
