@@ -1,0 +1,170 @@
+{
+	"info": {
+		"_postman_id": "1242b25c-0276-4d66-b55a-bc25dded0dd2",
+		"name": "Senpai",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Noticias",
+			"item": [
+				{
+					"name": "Obtener todas las noticias",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/noticias",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"noticias"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener la noticia 1",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhvbGFAc2VucGFpLmNvbSIsImlhdCI6MTY0ODc3NDQ5M30.LmP474v-XZzecw6cyQANY5v1-D8K-XSDunjeJZSZkPM",
+								"type": "default"
+							},
+							{
+								"key": "Authorization",
+								"value": "123123123",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:4000/noticias/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"noticias",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener noticias con size",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/noticias?size=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"noticias"
+							],
+							"query": [
+								{
+									"key": "size",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Contacto",
+			"item": [
+				{
+					"name": "Mandar contacto",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "gustavo.rodriguez@gmail.com",
+									"type": "default"
+								},
+								{
+									"key": "mensaje",
+									"value": "Hola desde postman",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:4000/contact/send",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"contact",
+								"send"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login de usuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "hola@senpai.com",
+									"type": "default"
+								},
+								{
+									"key": "password",
+									"value": "hola123",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:4000/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
