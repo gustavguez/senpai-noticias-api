@@ -106,3 +106,4 @@ dist
 data/*
 !data/.gitkeep
 !data/Senpai.postman_collection.json
+!data/seed.sql

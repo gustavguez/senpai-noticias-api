@@ -3,6 +3,9 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
 
+//Levantar variables de entorno
+require("dotenv").config();
+
 //Creamos nuestra API
 const api = express();
 
